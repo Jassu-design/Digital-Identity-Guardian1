@@ -1,12 +1,14 @@
 import mongoose from 'mongoose'
 
 const connectDatabase = async () => {
-  if (!process.env.MONGODB_URI) {
+  const mongoUri = process.env.MONGODB_URI
+
+  if (!mongoUri) {
     throw new Error('MONGODB_URI is missing')
   }
 
-  await mongoose.connect(process.env.MONGODB_URI)
-  console.log('MongoDB connected')
+  await mongoose.connect(mongoUri)
+  console.log('MongoDB Atlas connected')
 }
 
 export default connectDatabase
