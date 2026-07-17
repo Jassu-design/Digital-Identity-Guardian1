@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import analysisRoutes from './routes/analysisRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import numberRoutes from './routes/numberRoutes.js'
+import incidentRoutes from './routes/incidentRoutes.js'
 import {
   analysisLimiter,
   authLimiter,
@@ -40,6 +41,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authLimiter, authRoutes)
 app.use('/api/numbers', numberRoutes)
 app.use('/api/analysis', analysisLimiter, analysisRoutes)
+app.use('/api/incidents', incidentRoutes)
 
 app.use(notFoundHandler)
 app.use(errorHandler)
