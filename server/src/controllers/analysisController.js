@@ -6,6 +6,7 @@ export const analyzeTextMessage = async (req, res, next) => {
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({
+        sucess: false,
         message: 'Message is required',
       })
     }
@@ -25,6 +26,7 @@ export const analyzeTextMessage = async (req, res, next) => {
     const result = analyzeMessageWithRules(message)
 
     return res.status(200).json({
+      sucess: true,
       message: 'Message analyzed successfully',
       analysis: result,
     })
