@@ -8,6 +8,7 @@ import incidentRoutes from './routes/incidentRoutes.js'
 import dashboardRoutes from './routes/dashboardRoutes.js'
 import aiAnalysisRoutes from './routes/aiAnalysisRoutes.js'
 import reportRoutes from './routes/reportRoutes.js'
+import organizationRoutes from './routes/organizationRoutes.js'
 import ocrRoutes from './routes/ocrRoutes.js'
 import {
   analysisLimiter,
@@ -50,6 +51,7 @@ app.use('/api/dashboard', dashboardRoutes)
 app.use('/api/ai', aiAnalysisRoutes)
 app.use('/api/ocr', ocrRoutes)
 app.use('/api/reports', reportRoutes)
+app.use('/api/organizations', organizationRoutes)
 
 app.use(notFoundHandler)
 app.use(errorHandler)
