@@ -26,19 +26,19 @@
 
 .sidebar {
   width: 280px;
-  min-height: 100vh;
+
+  height: calc(100vh - 74px);
 
   position: sticky;
-  top: 0;
+  top: 74px;
 
-  display: flex;
-  flex-direction: column;
+  align-self: flex-start;
 
-  background: var(--surface);
+  overflow-y: auto;
 
-  border-right: 1px solid var(--border);
+  background: #fff;
 
-  box-shadow: var(--shadow);
+  border-right: 1px solid #e5e7eb;
 }
 
 /* ==========================================

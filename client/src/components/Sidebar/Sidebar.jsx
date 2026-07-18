@@ -41,15 +41,26 @@ const Sidebar = () => {
           {menuItems.map(eachItem => (
             <li key={eachItem.path}>
               <NavLink
-                to={eachItem.path}
-                className={({isActive}) =>
-                  isActive
-                    ? 'sidebar-link active-sidebar-link'
-                    : 'sidebar-link'
-                }
-              >
-                {eachItem.name}
-              </NavLink>
+                  to="/profile"
+                  className={({isActive}) =>
+                    isActive
+                      ? 'sidebar-link active'
+                      : 'sidebar-link'
+                  }
+                >
+                  Profile
+                </NavLink>
+
+                <NavLink
+                  to="/settings"
+                  className={({isActive}) =>
+                    isActive
+                      ? 'sidebar-link active'
+                      : 'sidebar-link'
+                  }
+                >
+                  Settings
+                </NavLink>
             </li>
           ))}
         </ul>

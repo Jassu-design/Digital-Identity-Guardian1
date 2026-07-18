@@ -23,23 +23,27 @@
 ========================================== */
 
 .navbar {
-  position: sticky;
+  position: fixed;
+
   top: 0;
+  left: 0;
+  right: 0;
+
+  height: 74px;
+
   z-index: 1000;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 18px 42px;
+  padding: 0 42px;
 
-  background: var(--surface);
+  background: #fff;
 
-  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #e5e7eb;
 
-  border-bottom: 1px solid var(--border);
-
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 20px rgba(15,23,42,.06);
 }
 
 /* ==========================================

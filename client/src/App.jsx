@@ -1,5 +1,4 @@
 import {
-  Link,
   Navigate,
   Route,
   Routes,
@@ -8,23 +7,22 @@ import {
 import Login from './pages/Auth/Login.jsx'
 import Register from './pages/Auth/Register.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
+import Incidents from './pages/Incidents/Incidents.jsx'
+import CreateIncident from './pages/Incidents/CreateIncident.jsx'
+import IncidentDetails from './pages/Incidents/IncidentDetails.jsx'
+import AIAnalyzer from './pages/AIAnalyzer/AIAnalyzer.jsx'
+import AIHistory from './pages/AIAnalyzer/AIHistory.jsx'
+import AIAnalysisDetails from './pages/AIAnalyzer/AIAnalysisDetails.jsx'
+import OCR from './pages/OCR/OCR.jsx'
+import Reports from './pages/Reports/Reports.jsx'
+import Organization from './pages/Organization/Organization.jsx'
+import NotFound from './pages/NotFound/NotFound.jsx'
 
 import ProtectedRoute from './routes/ProtectedRoute.jsx'
 import PublicRoute from './routes/PublicRoute.jsx'
 import DashboardLayout from './layouts/DashboardLayout.jsx'
-import Incidents from './pages/Incidents/Incidents'
-import CreateIncident from './pages/Incidents/CreateIncident.jsx'
-
-const NotFound = () => (
-  <div className="not-found-page">
-    <h1>404</h1>
-    <h2>Page not found</h2>
-
-    <p>The page you are looking for does not exist.</p>
-
-    <Link to="/dashboard">Go to Dashboard</Link>
-  </div>
-)
+import Profile from './pages/Profile/Profile.jsx'
+import Settings from './pages/Settings/Settings.jsx'
 
 const App = () => (
   <Routes>
@@ -35,7 +33,67 @@ const App = () => (
 
     <Route element={<ProtectedRoute />}>
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        <Route
+          path="/incidents"
+          element={<Incidents />}
+        />
+
+        <Route
+          path="/incidents/create"
+          element={<CreateIncident />}
+        />
+
+        <Route
+          path="/incidents/:id"
+          element={<IncidentDetails />}
+        />
+
+        <Route
+          path="/ai-analyzer"
+          element={<AIAnalyzer />}
+        />
+
+        <Route
+          path="/ai-history"
+          element={<AIHistory />}
+        />
+
+        <Route
+          path="/ai-history/:id"
+          element={<AIAnalysisDetails />}
+        />
+
+        <Route
+          path="/ocr"
+          element={<OCR />}
+        />
+
+        <Route
+          path="/reports"
+          element={<Reports />}
+        />
+
+        <Route
+          path="/organization"
+          element={<Organization />}
+        />
+
+        <Route
+          path="/profile"
+          element={<Profile />}
+        />
+
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
+
       </Route>
     </Route>
 
@@ -45,16 +103,9 @@ const App = () => (
     />
 
     <Route
-    path="/incidents"
-    element={<Incidents />}
+      path="*"
+      element={<NotFound />}
     />
-    
-    <Route
-    path="/incidents/create"
-    element={<CreateIncident />}
-    />
-
-    <Route path="*" element={<NotFound />} />
   </Routes>
 )
 

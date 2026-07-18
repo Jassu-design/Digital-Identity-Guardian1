@@ -1,0 +1,303 @@
+/* ==========================================
+   404 Not Found Page
+========================================== */
+
+.not-found-page {
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    padding:40px;
+
+
+    background:
+
+    radial-gradient(
+        circle at top right,
+        rgba(37,99,235,.12),
+        transparent 35%
+    ),
+
+    #f8fafc;
+
+}
+
+
+
+/* ==========================================
+   404 Number
+========================================== */
+
+.not-found-page h1 {
+
+
+    margin:0;
+
+
+    font-size:9rem;
+
+
+    line-height:1;
+
+
+    font-weight:900;
+
+
+    letter-spacing:-8px;
+
+
+    color:#2563eb;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #60a5fa
+    );
+
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+
+}
+
+
+
+/* ==========================================
+   Title
+========================================== */
+
+.not-found-page h2 {
+
+
+    margin-top:20px;
+
+
+    margin-bottom:0;
+
+
+    font-size:2rem;
+
+
+    font-weight:750;
+
+
+    color:#0f172a;
+
+
+    letter-spacing:-.5px;
+
+}
+
+
+
+/* ==========================================
+   Description
+========================================== */
+
+.not-found-page p {
+
+
+    max-width:450px;
+
+
+    margin:14px auto 0;
+
+
+    color:#64748b;
+
+
+    font-size:1rem;
+
+
+    line-height:1.6;
+
+}
+
+
+
+/* ==========================================
+   Button
+========================================== */
+
+.not-found-page a {
+
+
+    margin-top:30px;
+
+
+    height:48px;
+
+
+    padding:0 30px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:12px;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-weight:600;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.not-found-page a:hover {
+
+
+    background:#1d4ed8;
+
+
+    transform:translateY(-3px);
+
+
+    box-shadow:
+
+    0 15px 30px rgba(37,99,235,.25);
+
+}
+
+
+
+/* ==========================================
+   Decorative Card Effect
+========================================== */
+
+.not-found-page::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:260px;
+
+
+    height:260px;
+
+
+    border-radius:50%;
+
+
+    background:rgba(37,99,235,.06);
+
+
+    filter:blur(50px);
+
+
+}
+
+
+
+/* ==========================================
+   Animation
+========================================== */
+
+.not-found-page h1,
+.not-found-page h2,
+.not-found-page p,
+.not-found-page a {
+
+
+    animation:
+
+    fadeUp .45s ease forwards;
+
+}
+
+
+
+@keyframes fadeUp {
+
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:600px){
+
+
+.not-found-page h1 {
+
+    font-size:6rem;
+
+    letter-spacing:-4px;
+
+}
+
+
+
+.not-found-page h2 {
+
+    font-size:1.5rem;
+
+}
+
+
+
+.not-found-page p {
+
+    font-size:.9rem;
+
+}
+
+
+}

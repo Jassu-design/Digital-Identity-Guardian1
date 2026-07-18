@@ -1,0 +1,278 @@
+/* ==========================================
+   Empty State Component
+========================================== */
+
+.empty-state-container {
+
+    width:100%;
+
+    max-width:520px;
+
+    margin:70px auto;
+
+    padding:45px 35px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+
+    background:#ffffff;
+
+
+    border:1px solid #e5e7eb;
+
+
+    border-radius:20px;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(15,23,42,.05);
+
+
+    animation:emptyFade .35s ease;
+
+}
+
+
+
+/* ==========================================
+   Empty Icon
+========================================== */
+
+.empty-state-icon {
+
+
+    width:70px;
+
+    height:70px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    margin-bottom:22px;
+
+
+    border-radius:50%;
+
+
+    background:rgba(37,99,235,.08);
+
+
+    border:1px solid rgba(37,99,235,.15);
+
+
+    color:#2563eb;
+
+
+    font-size:3rem;
+
+
+    font-weight:300;
+
+
+    line-height:1;
+
+}
+
+
+
+/* ==========================================
+   Heading
+========================================== */
+
+.empty-state-container h2 {
+
+
+    margin:0;
+
+
+    color:#0f172a;
+
+
+    font-size:1.4rem;
+
+
+    font-weight:750;
+
+
+    letter-spacing:-.4px;
+
+}
+
+
+
+/* ==========================================
+   Message
+========================================== */
+
+.empty-state-container p {
+
+
+    margin-top:12px;
+
+
+    max-width:400px;
+
+
+    color:#64748b;
+
+
+    font-size:.95rem;
+
+
+    line-height:1.6;
+
+}
+
+
+
+/* ==========================================
+   Action Button
+========================================== */
+
+.empty-state-action {
+
+
+    margin-top:28px;
+
+
+    height:46px;
+
+
+    padding:0 28px;
+
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border-radius:12px;
+
+
+    border:none;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-size:.95rem;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.empty-state-action:hover {
+
+
+    background:#1d4ed8;
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+/* ==========================================
+   Animation
+========================================== */
+
+@keyframes emptyFade {
+
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:600px){
+
+
+.empty-state-container {
+
+
+    margin:35px 20px;
+
+
+    padding:35px 22px;
+
+}
+
+
+.empty-state-icon {
+
+
+    width:60px;
+
+    height:60px;
+
+
+    font-size:2.5rem;
+
+}
+
+
+.empty-state-container h2 {
+
+
+    font-size:1.2rem;
+
+}
+
+
+}

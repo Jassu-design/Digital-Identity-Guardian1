@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-hot-toast'
+import LoadingSpinner from '../../components/common/LoadingSpinner.jsx'
+import ErrorMessage from '../../components/common/ErrorMessage.jsx'
+import EmptyState from '../../components/common/EmptyState.jsx'
 
 import {
   deleteIncident,
@@ -79,21 +82,17 @@ const Incidents = () => {
 
   if (isLoading) {
     return (
-      <div className="incidents-loading">
-        <h2>Loading incidents...</h2>
-      </div>
+      <LoadingSpinner message="Loading incidents..." />
     )
   }
 
   if (error) {
     return (
-      <div className="incidents-error">
-        <h2>{error}</h2>
-
-        <button onClick={fetchIncidents}>
-          Try Again
-        </button>
-      </div>
+      <ErrorMessage
+      title="Unable to load incidents"
+      message={error}
+      onRetry={fetchIncidents}
+    />
     )
   }
 
@@ -117,18 +116,13 @@ const Incidents = () => {
       </div>
 
       {incidents.length === 0 ? (
-        <div className="empty-incidents">
-          <h2>No incidents found</h2>
-
-          <p>
-            Start by reporting your first incident.
-          </p>
-
-          <Link to="/incidents/create">
-            Report Incident
-          </Link>
-        </div>
-      ) : (
+        <EmptyState
+            title="No incidents found"
+            message="Start by reporting your first security incident."
+            actionText="Report Incident"
+            actionPath="/incidents/create"
+        />
+          ) : (
         <div className="incident-list">
           {incidents.map(each => (
             <div

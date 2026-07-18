@@ -1,0 +1,566 @@
+/* ==========================================
+   AI History Page
+========================================== */
+
+.ai-history-container {
+
+    width:100%;
+
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+.ai-history-header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+}
+
+
+.ai-history-header h1 {
+
+    margin:0;
+
+    font-size:2rem;
+
+    font-weight:750;
+
+    color:#0f172a;
+
+    letter-spacing:-.5px;
+
+}
+
+
+.ai-history-header p {
+
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:.95rem;
+
+}
+
+
+
+/* ==========================================
+   New Analysis Button
+========================================== */
+
+.new-analysis-button {
+
+    height:46px;
+
+    padding:0 24px;
+
+
+    display:flex;
+
+    align-items:center;
+
+
+    border-radius:12px;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.new-analysis-button:hover {
+
+    background:#1d4ed8;
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+/* ==========================================
+   History List
+========================================== */
+
+.ai-history-list {
+
+    display:flex;
+
+    flex-direction:column;
+
+
+    gap:20px;
+
+}
+
+
+
+/* ==========================================
+   History Card
+========================================== */
+
+.ai-history-card {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    gap:25px;
+
+
+    padding:26px;
+
+
+    background:white;
+
+
+    border:1px solid #e5e7eb;
+
+
+    border-radius:18px;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(15,23,42,.04);
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.ai-history-card:hover {
+
+
+    transform:translateY(-3px);
+
+
+    border-color:#bfdbfe;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(15,23,42,.08);
+
+}
+
+
+
+/* ==========================================
+   Main Content
+========================================== */
+
+.ai-history-main {
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+
+.ai-history-title {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    margin-bottom:12px;
+
+}
+
+
+
+.ai-history-title h2 {
+
+
+    margin:0;
+
+
+    color:#0f172a;
+
+
+    font-size:1.15rem;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+/* ==========================================
+   Risk Badge
+========================================== */
+
+.risk-level {
+
+
+    padding:6px 14px;
+
+
+    border-radius:999px;
+
+
+    font-size:.8rem;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+/* Low */
+
+.risk-low {
+
+
+    background:#dcfce7;
+
+
+    color:#15803d;
+
+}
+
+
+
+/* Medium */
+
+.risk-medium {
+
+
+    background:#fef3c7;
+
+
+    color:#b45309;
+
+}
+
+
+
+/* High */
+
+.risk-high,
+.risk-critical {
+
+
+    background:#fee2e2;
+
+
+    color:#dc2626;
+
+}
+
+
+
+/* Unknown */
+
+.risk-unknown {
+
+
+    background:#e2e8f0;
+
+
+    color:#475569;
+
+}
+
+
+
+/* ==========================================
+   Message
+========================================== */
+
+.ai-history-message {
+
+
+    margin:0;
+
+
+    color:#475569;
+
+
+    line-height:1.6;
+
+
+    display:-webkit-box;
+
+
+    -webkit-line-clamp:3;
+
+
+    -webkit-box-orient:vertical;
+
+
+    overflow:hidden;
+
+}
+
+
+
+/* ==========================================
+   Meta
+========================================== */
+
+.ai-history-meta {
+
+
+    display:flex;
+
+
+    gap:25px;
+
+
+    margin-top:18px;
+
+
+    color:#64748b;
+
+
+    font-size:.85rem;
+
+}
+
+
+
+/* ==========================================
+   Actions
+========================================== */
+
+.ai-history-actions {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+    justify-content:center;
+
+}
+
+
+
+.ai-history-actions a,
+.ai-history-actions button {
+
+
+    height:42px;
+
+
+    padding:0 20px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:10px;
+
+
+    font-size:.9rem;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+/* View Button */
+
+.ai-history-actions a {
+
+
+    background:#eff6ff;
+
+
+    color:#2563eb;
+
+
+    text-decoration:none;
+
+}
+
+
+
+.ai-history-actions a:hover {
+
+
+    background:#dbeafe;
+
+}
+
+
+
+/* Delete Button */
+
+.ai-history-actions button {
+
+
+    border:1px solid #fecaca;
+
+
+    background:white;
+
+
+    color:#dc2626;
+
+}
+
+
+
+.ai-history-actions button:hover {
+
+
+    background:#fee2e2;
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+
+@media(max-width:768px){
+
+
+.ai-history-header {
+
+
+    flex-direction:column;
+
+
+    align-items:flex-start;
+
+}
+
+
+
+.ai-history-card {
+
+
+    flex-direction:column;
+
+}
+
+
+
+.ai-history-actions {
+
+
+    flex-direction:row;
+
+
+}
+
+
+
+.ai-history-actions a,
+.ai-history-actions button {
+
+
+    flex:1;
+
+}
+
+
+
+.ai-history-meta {
+
+
+    flex-direction:column;
+
+
+    gap:8px;
+
+}
+
+}
+
+
+
+@media(max-width:480px){
+
+
+.ai-history-actions {
+
+
+    flex-direction:column;
+
+}
+
+
+
+.ai-history-header h1 {
+
+
+    font-size:1.5rem;
+
+}
+
+}

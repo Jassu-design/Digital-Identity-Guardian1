@@ -1,0 +1,584 @@
+/* ==========================================
+   AI Analysis Details
+========================================== */
+
+.analysis-details-container {
+
+    width:100%;
+
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+.analysis-details-header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+
+.analysis-details-header h1 {
+
+    margin:0;
+
+    color:#0f172a;
+
+    font-size:2rem;
+
+    font-weight:750;
+
+    letter-spacing:-.5px;
+
+}
+
+
+.analysis-details-header p {
+
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:.95rem;
+
+}
+
+
+
+/* ==========================================
+   Header Back Button
+========================================== */
+
+.analysis-details-header button {
+
+
+    height:46px;
+
+
+    padding:0 22px;
+
+
+    border-radius:12px;
+
+
+    background:white;
+
+
+    border:1px solid #cbd5e1;
+
+
+    color:#475569;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.analysis-details-header button:hover {
+
+
+    background:#f1f5f9;
+
+
+    border-color:#94a3b8;
+
+}
+
+
+
+/* ==========================================
+   Risk Summary Card
+========================================== */
+
+.analysis-risk-card {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:30px;
+
+
+    margin-bottom:25px;
+
+
+    background:white;
+
+
+    border-radius:20px;
+
+
+    border:1px solid #e5e7eb;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(15,23,42,.05);
+
+}
+
+
+
+.analysis-risk-card p {
+
+
+    margin:0;
+
+
+    color:#64748b;
+
+
+    font-size:.9rem;
+
+
+    font-weight:600;
+
+}
+
+
+
+.analysis-risk-card h2 {
+
+
+    margin-top:8px;
+
+
+    font-size:2.4rem;
+
+
+    color:#0f172a;
+
+
+    font-weight:800;
+
+}
+
+
+
+/* ==========================================
+   Risk Badge
+========================================== */
+
+.analysis-risk-level {
+
+
+    padding:10px 20px;
+
+
+    border-radius:999px;
+
+
+    font-size:.9rem;
+
+
+    font-weight:700;
+
+}
+
+
+
+.risk-low {
+
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+
+
+.risk-medium {
+
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+
+
+.risk-high,
+.risk-critical {
+
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+
+.risk-unknown {
+
+
+    background:#e2e8f0;
+
+    color:#475569;
+
+}
+
+
+
+/* ==========================================
+   Details Card
+========================================== */
+
+.analysis-details-card {
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(2,1fr);
+
+
+    gap:20px;
+
+
+    padding:30px;
+
+
+    background:white;
+
+
+    border-radius:20px;
+
+
+    border:1px solid #e5e7eb;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(15,23,42,.05);
+
+}
+
+
+
+/* ==========================================
+   Detail Item
+========================================== */
+
+.analysis-detail-item {
+
+
+    padding:20px;
+
+
+    background:#f8fafc;
+
+
+    border-radius:14px;
+
+
+    border:1px solid #e5e7eb;
+
+}
+
+
+
+.analysis-detail-item h3 {
+
+
+    margin:0 0 10px;
+
+
+    font-size:.9rem;
+
+
+    color:#475569;
+
+
+    font-weight:700;
+
+
+    text-transform:uppercase;
+
+
+    letter-spacing:.4px;
+
+}
+
+
+
+.analysis-detail-item p {
+
+
+    margin:0;
+
+
+    color:#0f172a;
+
+
+    line-height:1.7;
+
+
+    font-size:.95rem;
+
+}
+
+
+
+/* Full width sections */
+
+.analysis-detail-item.full-width {
+
+
+    grid-column:1 / -1;
+
+}
+
+
+
+/* ==========================================
+   Lists
+========================================== */
+
+.analysis-detail-item ul {
+
+
+    margin:0;
+
+
+    padding-left:20px;
+
+
+}
+
+
+
+.analysis-detail-item li {
+
+
+    margin-bottom:8px;
+
+
+    color:#334155;
+
+
+    line-height:1.5;
+
+}
+
+
+
+/* ==========================================
+   Actions
+========================================== */
+
+.analysis-details-actions {
+
+
+    display:flex;
+
+
+    justify-content:flex-end;
+
+
+    gap:15px;
+
+
+    margin-top:30px;
+
+}
+
+
+
+.analysis-details-actions button {
+
+
+    height:48px;
+
+
+    padding:0 25px;
+
+
+    border-radius:12px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+/* Primary */
+
+.analysis-details-actions button:first-child {
+
+
+    border:none;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+}
+
+
+
+.analysis-details-actions button:first-child:hover {
+
+
+    background:#1d4ed8;
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+/* Delete */
+
+.analysis-details-actions button:last-child {
+
+
+    background:white;
+
+
+    color:#dc2626;
+
+
+    border:1px solid #fecaca;
+
+}
+
+
+
+.analysis-details-actions button:last-child:hover {
+
+
+    background:#fee2e2;
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:768px){
+
+
+.analysis-details-header {
+
+
+    flex-direction:column;
+
+
+    align-items:flex-start;
+
+}
+
+
+
+.analysis-risk-card {
+
+
+    flex-direction:column;
+
+
+    align-items:flex-start;
+
+
+    gap:20px;
+
+}
+
+
+
+.analysis-details-card {
+
+
+    grid-template-columns:1fr;
+
+
+    padding:20px;
+
+}
+
+
+
+.analysis-details-actions {
+
+
+    flex-direction:column;
+
+}
+
+
+
+.analysis-details-actions button {
+
+
+    width:100%;
+
+}
+
+
+}
+
+
+
+@media(max-width:480px){
+
+
+.analysis-details-header h1 {
+
+
+    font-size:1.5rem;
+
+}
+
+
+
+.analysis-risk-card h2 {
+
+
+    font-size:2rem;
+
+}
+
+}

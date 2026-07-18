@@ -1,0 +1,546 @@
+/* ==========================================
+   Settings Page
+========================================== */
+
+
+.settings-page {
+
+    min-height:100%;
+
+    padding:32px;
+
+
+    background:
+
+    radial-gradient(
+        circle at top right,
+        rgba(37,99,235,.08),
+        transparent 30%
+    ),
+
+    #f8fafc;
+
+}
+
+
+
+/* ==========================================
+   Header
+========================================== */
+
+
+.settings-header {
+
+    margin-bottom:32px;
+
+}
+
+
+
+.settings-header h1 {
+
+    margin:0;
+
+
+    font-size:2rem;
+
+
+    font-weight:750;
+
+
+    color:#0f172a;
+
+
+    letter-spacing:-.5px;
+
+}
+
+
+
+.settings-header p {
+
+    margin-top:8px;
+
+
+    color:#64748b;
+
+
+    font-size:.95rem;
+
+}
+
+
+
+
+/* ==========================================
+   Form Container
+========================================== */
+
+
+.settings-form {
+
+
+    max-width:900px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:25px;
+
+}
+
+
+
+
+/* ==========================================
+   Settings Section
+========================================== */
+
+
+.settings-section {
+
+
+    background:white;
+
+
+    border-radius:20px;
+
+
+    padding:30px;
+
+
+    border:1px solid #e5e7eb;
+
+
+    box-shadow:
+
+
+    0 15px 35px rgba(15,23,42,.06);
+
+}
+
+
+
+
+/* ==========================================
+   Section Heading
+========================================== */
+
+
+.settings-section-heading {
+
+
+    margin-bottom:25px;
+
+}
+
+
+
+.settings-section-heading h2 {
+
+
+    margin:0;
+
+
+    font-size:1.25rem;
+
+
+    color:#0f172a;
+
+
+    font-weight:700;
+
+}
+
+
+
+.settings-section-heading p {
+
+
+    margin-top:8px;
+
+
+    color:#64748b;
+
+
+    font-size:.9rem;
+
+}
+
+
+
+
+/* ==========================================
+   Setting Option
+========================================== */
+
+
+.settings-option {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    gap:20px;
+
+
+    padding:20px 0;
+
+
+    border-bottom:1px solid #e5e7eb;
+
+
+    cursor:pointer;
+
+}
+
+
+
+.settings-option:last-child {
+
+    border-bottom:none;
+
+}
+
+
+
+.settings-option h3 {
+
+
+    margin:0;
+
+
+    font-size:1rem;
+
+
+    font-weight:650;
+
+
+    color:#0f172a;
+
+}
+
+
+
+.settings-option p {
+
+
+    margin-top:6px;
+
+
+    color:#64748b;
+
+
+    font-size:.88rem;
+
+
+    line-height:1.5;
+
+}
+
+
+
+
+/* ==========================================
+   Toggle Checkbox
+========================================== */
+
+
+.settings-option input {
+
+
+    appearance:none;
+
+
+    width:48px;
+
+
+    height:26px;
+
+
+    background:#cbd5e1;
+
+
+    border-radius:50px;
+
+
+    position:relative;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+
+    flex-shrink:0;
+
+}
+
+
+
+.settings-option input::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:20px;
+
+
+    height:20px;
+
+
+    top:3px;
+
+
+    left:4px;
+
+
+    background:white;
+
+
+    border-radius:50%;
+
+
+    transition:.25s ease;
+
+
+    box-shadow:
+
+    0 2px 5px rgba(0,0,0,.2);
+
+}
+
+
+
+.settings-option input:checked {
+
+
+    background:#2563eb;
+
+}
+
+
+
+.settings-option input:checked::before {
+
+
+    transform:translateX(20px);
+
+}
+
+
+
+/* Focus */
+
+.settings-option input:focus {
+
+
+    outline:none;
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+
+
+
+/* ==========================================
+   Actions
+========================================== */
+
+
+.settings-actions {
+
+
+    display:flex;
+
+
+    justify-content:flex-end;
+
+
+    gap:15px;
+
+
+    margin-top:5px;
+
+}
+
+
+
+.save-settings-button,
+.reset-settings-button {
+
+
+    height:48px;
+
+
+    padding:0 26px;
+
+
+    border-radius:12px;
+
+
+    font-size:.95rem;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.25s ease;
+
+}
+
+
+
+/* Save Button */
+
+
+.save-settings-button {
+
+
+    border:none;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+}
+
+
+
+.save-settings-button:hover {
+
+
+    background:#1d4ed8;
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+
+/* Reset Button */
+
+
+.reset-settings-button {
+
+
+    background:white;
+
+
+    color:#475569;
+
+
+    border:1px solid #cbd5e1;
+
+}
+
+
+
+.reset-settings-button:hover {
+
+
+    background:#f1f5f9;
+
+
+    border-color:#94a3b8;
+
+}
+
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+
+@media(max-width:768px){
+
+
+.settings-page {
+
+
+    padding:20px;
+
+}
+
+
+
+.settings-section {
+
+
+    padding:22px;
+
+}
+
+
+
+.settings-option {
+
+
+    align-items:flex-start;
+
+
+}
+
+
+
+.settings-option p {
+
+
+    max-width:220px;
+
+}
+
+
+
+.settings-actions {
+
+
+    flex-direction:column;
+
+}
+
+
+
+.save-settings-button,
+.reset-settings-button {
+
+
+    width:100%;
+
+}
+
+
+}
