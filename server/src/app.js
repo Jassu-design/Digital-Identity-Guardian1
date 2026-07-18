@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js'
 import numberRoutes from './routes/numberRoutes.js'
 import incidentRoutes from './routes/incidentRoutes.js'
 import dashboardRoutes from './routes/dashboardRoutes.js'
+import aiAnalysisRoutes from './routes/aiAnalysisRoutes.js'
 import {
   analysisLimiter,
   authLimiter,
@@ -44,6 +45,7 @@ app.use('/api/numbers', numberRoutes)
 app.use('/api/analysis', analysisLimiter, analysisRoutes)
 app.use('/api/incidents', incidentRoutes)
 app.use('/api/dashboard', dashboardRoutes)
+app.use('/api/ai', aiAnalysisRoutes)
 
 app.use(notFoundHandler)
 app.use(errorHandler)
