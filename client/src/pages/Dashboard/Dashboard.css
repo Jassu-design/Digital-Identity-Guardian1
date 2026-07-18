@@ -1,0 +1,803 @@
+/* ==========================================
+   Dashboard Container
+========================================== */
+
+.dashboard-container {
+  min-height: 100vh;
+
+  padding: 32px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.08),
+      transparent 30%
+    ),
+    #f8fafc;
+}
+
+
+/* ==========================================
+   Title Section
+========================================== */
+
+.dashboard-title-section {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 32px;
+}
+
+
+.dashboard-title-section h1 {
+  font-size: 2rem;
+
+  font-weight: 750;
+
+  color: #0f172a;
+
+  letter-spacing: -0.5px;
+}
+
+
+.dashboard-title-section p {
+  margin-top: 8px;
+
+  color: #64748b;
+
+  font-size: 0.95rem;
+}
+
+
+
+/* ==========================================
+   Refresh Button
+========================================== */
+
+
+.refresh-dashboard-button {
+  height: 44px;
+
+  padding: 0 22px;
+
+  border-radius: 10px;
+
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .25s ease;
+}
+
+
+.refresh-dashboard-button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(37,99,235,.25);
+}
+
+
+
+/* ==========================================
+   Summary Cards
+========================================== */
+
+
+.dashboard-summary-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+  gap: 22px;
+
+  margin-bottom: 40px;
+
+}
+
+
+
+.summary-card {
+
+  background:white;
+
+  padding:26px;
+
+  border-radius:18px;
+
+  border:1px solid #e5e7eb;
+
+  box-shadow:
+    0 10px 25px rgba(15,23,42,.05);
+
+  transition:.25s ease;
+
+}
+
+
+
+.summary-card:hover {
+
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.10);
+
+}
+
+
+
+.summary-label {
+
+  color:#64748b;
+
+  font-size:.85rem;
+
+  font-weight:600;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+
+}
+
+
+
+.summary-card h2 {
+
+  margin:15px 0;
+
+  font-size:2.2rem;
+
+  color:#0f172a;
+
+}
+
+
+
+.summary-description {
+
+  color:#64748b;
+
+  font-size:.9rem;
+
+}
+
+
+
+/* ==========================================
+   Risk Score
+========================================== */
+
+
+.risk-score-card {
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+
+
+.risk-score-card::before {
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+
+  left:0;
+
+  height:4px;
+
+  width:100%;
+
+  background:#2563eb;
+
+}
+
+
+
+.risk-level {
+
+  display:inline-flex;
+
+  padding:6px 14px;
+
+  border-radius:50px;
+
+  font-size:.8rem;
+
+  font-weight:700;
+
+}
+
+
+
+.risk-low {
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+}
+
+
+.risk-medium {
+
+  background:#fef3c7;
+
+  color:#b45309;
+
+}
+
+
+.risk-high {
+
+  background:#fee2e2;
+
+  color:#b91c1c;
+
+}
+
+
+
+/* ==========================================
+   Section Heading
+========================================== */
+
+
+.section-heading {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.section-heading h2 {
+
+  font-size:1.35rem;
+
+  color:#0f172a;
+
+}
+
+
+
+.section-heading a {
+
+  color:#2563eb;
+
+  font-size:.9rem;
+
+  font-weight:600;
+
+}
+
+
+
+/* ==========================================
+   Incident Status
+========================================== */
+
+
+.incident-status-grid {
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(170px,1fr));
+
+  gap:18px;
+
+}
+
+
+
+.status-card {
+
+  background:white;
+
+  padding:22px;
+
+  border-radius:16px;
+
+  border:1px solid #e5e7eb;
+
+}
+
+
+
+.status-card p {
+
+  color:#64748b;
+
+  font-size:.85rem;
+
+}
+
+
+
+.status-card h3 {
+
+  margin-top:10px;
+
+  font-size:1.8rem;
+
+  color:#0f172a;
+
+}
+
+
+
+/* ==========================================
+   Quick Actions
+========================================== */
+
+
+.quick-actions-section {
+
+  margin-top:40px;
+
+}
+
+
+
+.quick-actions-grid {
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:20px;
+
+}
+
+
+
+.quick-action-card {
+
+  padding:25px;
+
+  background:white;
+
+  border-radius:18px;
+
+  border:1px solid #e5e7eb;
+
+  text-decoration:none;
+
+  transition:.25s ease;
+
+}
+
+
+
+.quick-action-card:hover {
+
+  transform:translateY(-5px);
+
+  border-color:#2563eb;
+
+  box-shadow:
+  0 15px 35px rgba(37,99,235,.12);
+
+}
+
+
+
+.quick-action-card h3 {
+
+  color:#0f172a;
+
+  margin-bottom:10px;
+
+}
+
+
+
+.quick-action-card p {
+
+  color:#64748b;
+
+  font-size:.9rem;
+
+}
+
+
+
+/* ==========================================
+   Recent Incidents
+========================================== */
+
+
+.recent-incidents-section {
+
+  margin-top:40px;
+
+}
+
+
+
+.recent-incidents-list {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+
+}
+
+
+
+.recent-incident-card {
+
+  background:white;
+
+  border-radius:16px;
+
+  padding:22px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:20px;
+
+  border:1px solid #e5e7eb;
+
+  transition:.25s ease;
+
+}
+
+
+
+.recent-incident-card:hover {
+
+  box-shadow:
+  0 12px 30px rgba(15,23,42,.08);
+
+}
+
+
+
+.incident-main-details h3 {
+
+  color:#0f172a;
+
+  margin-bottom:8px;
+
+}
+
+
+
+.incident-main-details p,
+
+.incident-main-details span {
+
+  color:#64748b;
+
+  font-size:.9rem;
+
+}
+
+
+
+.incident-badges {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+}
+
+
+
+.severity-badge,
+.status-badge,
+.incident-risk-score {
+
+  padding:6px 12px;
+
+  border-radius:50px;
+
+  font-size:.78rem;
+
+  font-weight:700;
+
+}
+
+
+
+/* Severity */
+
+
+.severity-critical {
+
+  background:#fee2e2;
+
+  color:#b91c1c;
+
+}
+
+
+.severity-high {
+
+  background:#ffedd5;
+
+  color:#c2410c;
+
+}
+
+
+.severity-medium {
+
+  background:#fef3c7;
+
+  color:#a16207;
+
+}
+
+
+.severity-low {
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+}
+
+
+
+/* Status */
+
+
+.status-open {
+
+  background:#dbeafe;
+
+  color:#1d4ed8;
+
+}
+
+
+.status-investigating {
+
+  background:#ede9fe;
+
+  color:#6d28d9;
+
+}
+
+
+.status-resolved {
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+}
+
+
+
+.incident-risk-score {
+
+  background:#f1f5f9;
+
+  color:#475569;
+
+}
+
+
+
+/* ==========================================
+   Empty State
+========================================== */
+
+
+.empty-incidents {
+
+  background:white;
+
+  padding:45px;
+
+  text-align:center;
+
+  border-radius:18px;
+
+  border:1px dashed #cbd5e1;
+
+}
+
+
+
+.empty-incidents h3 {
+
+  margin-bottom:10px;
+
+}
+
+
+
+.empty-incidents a {
+
+  display:inline-block;
+
+  margin-top:20px;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  background:#2563eb;
+
+  color:white;
+
+}
+
+
+
+/* ==========================================
+   Loading
+========================================== */
+
+
+.dashboard-loading {
+
+  min-height:70vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:15px;
+
+}
+
+
+
+.dashboard-spinner {
+
+  width:42px;
+
+  height:42px;
+
+  border-radius:50%;
+
+  border:4px solid #dbeafe;
+
+  border-top-color:#2563eb;
+
+  animation:spin 1s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+  to {
+    transform:rotate(360deg);
+  }
+
+}
+
+
+
+/* ==========================================
+   Error
+========================================== */
+
+
+.dashboard-error {
+
+  min-height:60vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+}
+
+
+
+.dashboard-error button {
+
+  margin-top:20px;
+
+  padding:12px 22px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#2563eb;
+
+  color:white;
+
+  cursor:pointer;
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+
+@media(max-width:768px){
+
+.dashboard-container{
+
+padding:20px;
+
+}
+
+
+.dashboard-title-section{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+
+.refresh-dashboard-button{
+
+width:100%;
+
+}
+
+
+.recent-incident-card{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+
+}

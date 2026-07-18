@@ -1,0 +1,533 @@
+/* ==========================================
+   Create Incident Page
+========================================== */
+
+.create-incident-container {
+  min-height: 100vh;
+
+  padding: 32px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37,99,235,.08),
+      transparent 30%
+    ),
+    #f8fafc;
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+
+.create-incident-header {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:20px;
+
+  margin-bottom:35px;
+
+}
+
+
+.create-incident-header h1 {
+
+  font-size:2rem;
+
+  font-weight:750;
+
+  color:#0f172a;
+
+  letter-spacing:-.5px;
+
+}
+
+
+.create-incident-header p {
+
+  margin-top:8px;
+
+  color:#64748b;
+
+  font-size:.95rem;
+
+}
+
+
+
+/* ==========================================
+   Cancel Header Button
+========================================== */
+
+
+.cancel-incident-button {
+
+  height:44px;
+
+  padding:0 22px;
+
+  border-radius:10px;
+
+  border:1px solid #cbd5e1;
+
+  background:white;
+
+  color:#475569;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+}
+
+
+.cancel-incident-button:hover {
+
+  background:#f1f5f9;
+
+  border-color:#94a3b8;
+
+}
+
+
+
+/* ==========================================
+   Form Container
+========================================== */
+
+
+.create-incident-form {
+
+  max-width:900px;
+
+  background:white;
+
+  padding:35px;
+
+  border-radius:20px;
+
+  border:1px solid #e5e7eb;
+
+  box-shadow:
+  0 15px 35px rgba(15,23,42,.06);
+
+}
+
+
+
+/* ==========================================
+   Server Error
+========================================== */
+
+
+.incident-form-error {
+
+  padding:15px 18px;
+
+  margin-bottom:25px;
+
+  border-radius:12px;
+
+  background:#fee2e2;
+
+  border:1px solid #fecaca;
+
+}
+
+
+.incident-form-error p {
+
+  color:#b91c1c;
+
+  font-weight:600;
+
+}
+
+
+
+/* ==========================================
+   Form Group
+========================================== */
+
+
+.incident-form-group {
+
+  display:flex;
+
+  flex-direction:column;
+
+  margin-bottom:24px;
+
+}
+
+
+
+.incident-form-group label {
+
+  margin-bottom:8px;
+
+  font-size:.95rem;
+
+  font-weight:600;
+
+  color:#0f172a;
+
+}
+
+
+
+.incident-form-group label span {
+
+  color:#dc2626;
+
+  margin-left:4px;
+
+}
+
+
+
+/* ==========================================
+   Inputs
+========================================== */
+
+
+.incident-form-group input,
+.incident-form-group textarea,
+.incident-form-group select {
+
+
+  width:100%;
+
+
+  padding:14px 16px;
+
+
+  border-radius:12px;
+
+
+  border:1px solid #cbd5e1;
+
+
+  background:white;
+
+
+  color:#0f172a;
+
+
+  font-size:.95rem;
+
+
+  transition:.25s ease;
+
+}
+
+
+.incident-form-group textarea {
+
+  resize:vertical;
+
+  min-height:160px;
+
+  line-height:1.6;
+
+}
+
+
+
+.incident-form-group input::placeholder,
+.incident-form-group textarea::placeholder {
+
+  color:#94a3b8;
+
+}
+
+
+
+.incident-form-group input:hover,
+.incident-form-group textarea:hover,
+.incident-form-group select:hover {
+
+  border-color:#94a3b8;
+
+}
+
+
+
+.incident-form-group input:focus,
+.incident-form-group textarea:focus,
+.incident-form-group select:focus {
+
+
+  outline:none;
+
+
+  border-color:#2563eb;
+
+
+  box-shadow:
+
+  0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+
+
+/* ==========================================
+   Select Styling
+========================================== */
+
+
+.incident-form-group select {
+
+  cursor:pointer;
+
+  appearance:none;
+
+
+  background-image:
+
+  linear-gradient(45deg,transparent 50%,#64748b 50%),
+  linear-gradient(135deg,#64748b 50%,transparent 50%);
+
+
+  background-position:
+
+  calc(100% - 20px) 50%,
+  calc(100% - 15px) 50%;
+
+
+  background-size:
+
+  5px 5px,
+  5px 5px;
+
+
+  background-repeat:no-repeat;
+
+}
+
+
+/* ==========================================
+   Error State
+========================================== */
+
+
+.input-error {
+
+  border-color:#dc2626 !important;
+
+}
+
+
+.input-error:focus {
+
+  box-shadow:
+
+  0 0 0 4px rgba(220,38,38,.12) !important;
+
+}
+
+
+
+.field-error-message {
+
+  margin-top:7px;
+
+  color:#dc2626;
+
+  font-size:.82rem;
+
+  font-weight:500;
+
+}
+
+
+
+/* ==========================================
+   Two Column Row
+========================================== */
+
+
+.incident-form-row {
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:20px;
+
+}
+
+
+
+/* ==========================================
+   Actions
+========================================== */
+
+
+.incident-form-actions {
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:15px;
+
+  margin-top:35px;
+
+}
+
+
+
+.secondary-button,
+.submit-incident-button {
+
+
+  height:48px;
+
+  padding:0 25px;
+
+
+  border-radius:12px;
+
+
+  font-weight:600;
+
+
+  cursor:pointer;
+
+
+  transition:.25s ease;
+
+}
+
+
+
+.secondary-button {
+
+
+  background:white;
+
+
+  border:1px solid #cbd5e1;
+
+
+  color:#475569;
+
+}
+
+
+
+.secondary-button:hover {
+
+  background:#f1f5f9;
+
+}
+
+
+
+.submit-incident-button {
+
+
+  border:none;
+
+
+  background:#2563eb;
+
+
+  color:white;
+
+}
+
+
+
+.submit-incident-button:hover:not(:disabled) {
+
+
+  background:#1d4ed8;
+
+
+  transform:translateY(-2px);
+
+
+  box-shadow:
+
+  0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+.submit-incident-button:disabled,
+.secondary-button:disabled {
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+
+@media(max-width:768px){
+
+
+.create-incident-container {
+
+  padding:20px;
+
+}
+
+
+.create-incident-header {
+
+  flex-direction:column;
+
+  align-items:flex-start;
+
+}
+
+
+.create-incident-form {
+
+  padding:25px;
+
+}
+
+
+.incident-form-row {
+
+  grid-template-columns:1fr;
+
+}
+
+
+.incident-form-actions {
+
+  flex-direction:column-reverse;
+
+}
+
+
+.secondary-button,
+.submit-incident-button {
+
+  width:100%;
+
+}
+
+}
