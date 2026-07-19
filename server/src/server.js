@@ -1,25 +1,25 @@
 import dotenv from 'dotenv'
-import path from 'node:path'
-import {fileURLToPath} from 'node:url'
+
+dotenv.config()
+
 import app from './app.js'
 import connectDatabase from './config/db.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-dotenv.config({path: path.join(__dirname, '.env')})
-
-const PORT = Number(process.env.PORT) || 3001
+const PORT = process.env.PORT || 3001
 
 const startServer = async () => {
   try {
     await connectDatabase()
 
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`)
+      console.log(`Server running on port ${PORT}`)
     })
   } catch (error) {
-    console.error('Failed to start server:', error.message)
+    console.error(
+      'Failed to start server:',
+      error.message,
+    )
+
     process.exit(1)
   }
 }
