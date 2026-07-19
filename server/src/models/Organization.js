@@ -29,7 +29,10 @@ const organizationSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Organization name is required.'],
+      required: [
+        true,
+        'Organization name is required.',
+      ],
       trim: true,
       minlength: 2,
       maxlength: 150,
@@ -47,6 +50,35 @@ const organizationSchema = new mongoose.Schema(
       trim: true,
       maxlength: 100,
       default: 'Other',
+    },
+
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      maxlength: 150,
+      default: '',
+    },
+
+    phone: {
+      type: String,
+      trim: true,
+      maxlength: 20,
+      default: '',
+    },
+
+    website: {
+      type: String,
+      trim: true,
+      maxlength: 300,
+      default: '',
+    },
+
+    address: {
+      type: String,
+      trim: true,
+      maxlength: 500,
+      default: '',
     },
 
     ownerId: {
@@ -78,38 +110,47 @@ const organizationSchema = new mongoose.Schema(
   },
 )
 
-organizationSchema.index({'members.userId': 1})
-
-organizationSchema.pre('validate', function (next) {
-  if (!this.inviteCode) {
-    this.inviteCode = crypto
-      .randomBytes(4)
-      .toString('hex')
-      .toUpperCase()
-  }
-
-  next()
+organizationSchema.index({
+  'members.userId': 1,
 })
 
-organizationSchema.pre('save', function (next) {
-  if (!this.ownerId) {
-    return next()
-  }
+organizationSchema.pre(
+  'validate',
+  function generateInviteCode(next) {
+    if (!this.inviteCode) {
+      this.inviteCode = crypto
+        .randomBytes(4)
+        .toString('hex')
+        .toUpperCase()
+    }
 
-  const ownerAlreadyAdded = this.members.some(
-    member =>
-      member.userId.toString() === this.ownerId.toString(),
-  )
+    next()
+  },
+)
 
-  if (!ownerAlreadyAdded) {
-    this.members.push({
-      userId: this.ownerId,
-      role: 'admin',
-    })
-  }
+organizationSchema.pre(
+  'save',
+  function addOwnerAsMember(next) {
+    if (!this.ownerId) {
+      return next()
+    }
 
-  next()
-})
+    const ownerAlreadyAdded = this.members.some(
+      member =>
+        member.userId.toString() ===
+        this.ownerId.toString(),
+    )
+
+    if (!ownerAlreadyAdded) {
+      this.members.push({
+        userId: this.ownerId,
+        role: 'admin',
+      })
+    }
+
+    next()
+  },
+)
 
 const Organization = mongoose.model(
   'Organization',

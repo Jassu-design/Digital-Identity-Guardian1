@@ -1,27 +1,26 @@
 import api from './axios.js'
 
-// Get logged-in user's organization
 export const getOrganization = async () => {
-  const response = await api.get('/organizations')
-
-  return response.data
-}
-
-// Create organization
-export const createOrganization = async organizationData => {
-  const response = await api.post(
+  const response = await api.get(
     '/organizations',
-    organizationData,
   )
 
   return response.data
 }
 
-// Update organization
-export const updateOrganization = async organizationData => {
+export const createOrganization = async data => {
+  const response = await api.post(
+    '/organizations',
+    data,
+  )
+
+  return response.data
+}
+
+export const updateOrganization = async data => {
   const response = await api.patch(
     '/organizations',
-    organizationData,
+    data,
   )
 
   return response.data

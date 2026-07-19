@@ -1,26 +1,57 @@
 import Organization from '../models/Organization.js'
 
-export const createOrganization = async (req, res, next) => {
-  try {
-    const {name, description = '', industry = 'Other'} = req.body
+export const createOrganization = async (
+      req,
+      res,
+      next,
+    ) => {
+      try {
+        const {
+          name,
+          description = '',
+          industry = 'Other',
+          email = '',
+          phone = '',
+          website = '',
+          address = '',
+        } = req.body
 
-    const organization = await Organization.create({
-      name,
-      description,
-      industry,
-      ownerId: req.user._id,
-    })
+        const existingOrganization =
+          await Organization.findOne({
+            ownerId: req.user._id,
+          })
 
-    return res.status(201).json({
-      success: true,
-      message: 'Organization created successfully.',
-      data: {
-        organization,
-      },
-    })
-  } catch (error) {
-    next(error)
-  }
+        if (existingOrganization) {
+          return res.status(400).json({
+            success: false,
+            message:
+              'You already own an organization.',
+          })
+        }
+
+        const organization =
+          await Organization.create({
+            name,
+            description,
+            industry,
+            email,
+            phone,
+            website,
+            address,
+            ownerId: req.user._id,
+          })
+
+        return res.status(201).json({
+          success: true,
+          message:
+            'Organization created successfully.',
+          data: {
+            organization,
+          },
+        })
+      } catch (error) {
+        next(error)
+      }
 }
 
 export const joinOrganization = async (req, res, next) => {
@@ -96,11 +127,16 @@ export const getMyOrganization = async (req, res, next) => {
   }
 }
 
-export const updateOrganization = async (req, res, next) => {
+export const updateOrganization = async (
+  req,
+  res,
+  next,
+) => {
   try {
-    const organization = await Organization.findOne({
-      ownerId: req.user._id,
-    })
+    const organization =
+      await Organization.findOne({
+        ownerId: req.user._id,
+      })
 
     if (!organization) {
       return res.status(404).json({
@@ -109,21 +145,29 @@ export const updateOrganization = async (req, res, next) => {
       })
     }
 
-    const {name, description, industry, status} = req.body
+    const allowedFields = [
+      'name',
+      'description',
+      'industry',
+      'email',
+      'phone',
+      'website',
+      'address',
+      'status',
+    ]
 
-    if (name !== undefined) organization.name = name
-    if (description !== undefined)
-      organization.description = description
-    if (industry !== undefined)
-      organization.industry = industry
-    if (status !== undefined)
-      organization.status = status
+    allowedFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        organization[field] = req.body[field]
+      }
+    })
 
     await organization.save()
 
     return res.status(200).json({
       success: true,
-      message: 'Organization updated successfully.',
+      message:
+        'Organization updated successfully.',
       data: {
         organization,
       },
