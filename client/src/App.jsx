@@ -4,8 +4,8 @@ import {
   Routes,
 } from 'react-router-dom'
 
-import Login from './pages/Auth/Login.jsx'
-import Register from './pages/Auth/Register.jsx'
+import Login from './pages/auth/Login.jsx'
+import Register from './pages/auth/Register.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
 import Incidents from './pages/Incidents/Incidents.jsx'
 import CreateIncident from './pages/Incidents/CreateIncident.jsx'
