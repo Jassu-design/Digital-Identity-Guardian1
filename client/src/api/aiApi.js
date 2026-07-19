@@ -2,8 +2,7 @@ import api from './axios.js'
 
 // Analyze suspicious text using AI
 export const analyzeText = async textData => {
-  const response = await api.post('/ai/analyze', textData)
-
+  const response = await api.post('/ai/message', textData)
   return response.data
 }
 

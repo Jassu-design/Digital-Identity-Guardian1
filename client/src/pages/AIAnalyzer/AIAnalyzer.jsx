@@ -27,10 +27,10 @@ const AIAnalyzer = () => {
       setAnalysis(null)
 
       const response = await analyzeText({
-        text: trimmedMessage,
+        message: trimmedMessage,
         sender: sender.trim() || 'Unknown',
+        source: 'manual',
       })
-
       setAnalysis(response.data || response.analysis || response)
 
       toast.success('Message analyzed successfully')

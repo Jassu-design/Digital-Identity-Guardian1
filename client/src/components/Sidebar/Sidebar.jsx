@@ -38,32 +38,47 @@ const Sidebar = () => {
 
       <nav className="sidebar-navigation">
         <ul className="sidebar-menu">
-          {menuItems.map(eachItem => (
-            <li key={eachItem.path}>
-              <NavLink
-                  to="/profile"
-                  className={({isActive}) =>
-                    isActive
-                      ? 'sidebar-link active'
-                      : 'sidebar-link'
-                  }
-                >
-                  Profile
-                </NavLink>
+  {menuItems.map(eachItem => (
+    <li key={eachItem.path}>
+      <NavLink
+        to={eachItem.path}
+        className={({isActive}) =>
+          isActive
+            ? 'sidebar-link active'
+            : 'sidebar-link'
+        }
+      >
+        {eachItem.name}
+      </NavLink>
+    </li>
+  ))}
 
-                <NavLink
-                  to="/settings"
-                  className={({isActive}) =>
-                    isActive
-                      ? 'sidebar-link active'
-                      : 'sidebar-link'
-                  }
-                >
-                  Settings
-                </NavLink>
-            </li>
-          ))}
-        </ul>
+  <li>
+    <NavLink
+      to="/profile"
+      className={({isActive}) =>
+        isActive
+          ? 'sidebar-link active'
+          : 'sidebar-link'
+      }
+    >
+      Profile
+    </NavLink>
+  </li>
+
+  <li>
+    <NavLink
+      to="/settings"
+      className={({isActive}) =>
+        isActive
+          ? 'sidebar-link active'
+          : 'sidebar-link'
+      }
+    >
+      Settings
+    </NavLink>
+  </li>
+</ul>
       </nav>
     </aside>
   )
