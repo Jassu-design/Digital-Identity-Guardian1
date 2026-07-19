@@ -19,16 +19,34 @@ const IncidentDetails = () => {
   const [error, setError] = useState('')
 
   const fetchIncident = async () => {
-    try {
-      setIsLoading(true)
-      setError('')
+  try {
+    setIsLoading(true)
+    setError('')
 
-      const response = await getIncidentById(id)
+    const response = await getIncidentById(id)
 
-      setIncident(response.data)
+    console.log('Incident Details API response:', response)
+
+    const incidentData =
+      response.data?.incident ||
+      response.incident ||
+      response.data ||
+      null
+
+    if (!incidentData) {
+      throw new Error('Incident data was not found.')
+    }
+
+    setIncident(incidentData)
     } catch (err) {
+      console.error(
+        'Incident details error:',
+        err.response?.data || err,
+      )
+
       const message =
         err.response?.data?.message ||
+        err.message ||
         'Unable to load incident.'
 
       setError(message)

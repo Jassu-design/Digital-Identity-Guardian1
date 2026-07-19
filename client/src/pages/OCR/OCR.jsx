@@ -58,45 +58,56 @@ const OCR = () => {
   }
 
   const handleAnalyze = async event => {
-    event.preventDefault()
+  event.preventDefault()
 
-    if (!selectedImage) {
-      setError('Please select an image first.')
-      return
-    }
-
-    try {
-      setIsAnalyzing(true)
-      setError('')
-      setResult(null)
-
-      const formData = new FormData()
-
-      // Change "image" only if your backend uses another field name.
-      formData.append('image', selectedImage)
-
-      const response = await analyzeImage(formData)
-
-      const analysisResult =
-        response.data?.analysis ||
-        response.data ||
-        response.analysis ||
-        response
-
-      setResult(analysisResult)
-
-      toast.success('Image analyzed successfully')
-    } catch (requestError) {
-      const message =
-        requestError.response?.data?.message ||
-        'Unable to analyze the image.'
-
-      setError(message)
-      toast.error(message)
-    } finally {
-      setIsAnalyzing(false)
-    }
+  if (!selectedImage) {
+    setError('Please select an image first.')
+    return
   }
+
+  try {
+    setIsAnalyzing(true)
+    setError('')
+    setResult(null)
+
+    const formData = new FormData()
+
+    formData.append('image', selectedImage)
+    formData.append('language', 'eng')
+    formData.append('analyzeWithAI', 'true')
+    formData.append('sender', 'Unknown')
+    formData.append('source', 'manual')
+
+    const response = await analyzeImage(formData)
+
+    console.log('OCR response:', response)
+
+    const ocrData = response.data?.ocr || {}
+    const analysisData = response.data?.analysis || {}
+
+    setResult({
+      extractedText: ocrData.text || '',
+      confidence: ocrData.confidence,
+      ...analysisData,
+    })
+
+    toast.success('Image extracted and analyzed successfully')
+  } catch (requestError) {
+    console.error(
+      'OCR error:',
+      requestError.response?.data || requestError,
+    )
+
+    const message =
+      requestError.response?.data?.message ||
+      'Unable to analyze the image.'
+
+    setError(message)
+    toast.error(message)
+  } finally {
+    setIsAnalyzing(false)
+  }
+}
   console.log(selectedImage)
   const handleDeleteHistory = async id => {
     const confirmed = window.confirm(
@@ -160,7 +171,7 @@ const OCR = () => {
   const riskLevel =
     result?.riskLevel ||
     result?.severity ||
-    result?.analysis?.riskLevel ||
+    
     'unknown'
 
   const recommendations =

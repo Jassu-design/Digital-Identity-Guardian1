@@ -3,7 +3,6 @@ import {toast} from 'react-hot-toast'
 
 import {
   createOrganization,
-  deleteOrganization,
   getOrganization,
   updateOrganization,
 } from '../../api/organizationApi.js'
@@ -28,46 +27,56 @@ const Organization = () => {
   const [error, setError] = useState('')
 
   const fetchOrganization = async () => {
-    try {
-      setIsLoading(true)
-      setError('')
+  try {
+    setIsLoading(true)
+    setError('')
 
-      const response = await getOrganization()
+    const response = await getOrganization()
 
-      const organizationData =
-        response.data?.organization ||
-        response.data ||
-        response.organization ||
-        null
+    console.log('Organization API response:', response)
 
-      setOrganization(organizationData)
+    const organizationData =
+      response?.data?.organization ||
+      response?.organization ||
+      response?.data ||
+      null
 
-      if (organizationData) {
-        setFormData({
-          name: organizationData.name || '',
-          industry: organizationData.industry || '',
-          email: organizationData.email || '',
-          phone: organizationData.phone || '',
-          website: organizationData.website || '',
-          address: organizationData.address || '',
-        })
-      }
-    } catch (requestError) {
-      if (requestError.response?.status === 404) {
-        setOrganization(null)
-        return
-      }
+    setOrganization(organizationData)
 
-      const message =
-        requestError.response?.data?.message ||
-        'Unable to load organization.'
-
-      setError(message)
-      toast.error(message)
-    } finally {
-      setIsLoading(false)
+    if (organizationData) {
+      setFormData({
+        name: organizationData.name || '',
+        industry: organizationData.industry || '',
+        email: organizationData.email || '',
+        phone: organizationData.phone || '',
+        website: organizationData.website || '',
+        address: organizationData.address || '',
+      })
+    } else {
+      setFormData(initialFormData)
     }
+  } catch (requestError) {
+    console.error(
+      'Organization fetch error:',
+      requestError.response?.data || requestError,
+    )
+
+    if (requestError.response?.status === 404) {
+      setOrganization(null)
+      setFormData(initialFormData)
+      return
+    }
+
+    const message =
+      requestError.response?.data?.message ||
+      'Unable to load organization.'
+
+    setError(message)
+    toast.error(message)
+  } finally {
+    setIsLoading(false)
   }
+}
 
   useEffect(() => {
     fetchOrganization()
@@ -102,93 +111,69 @@ const Organization = () => {
   }
 
   const handleSubmit = async event => {
-    event.preventDefault()
+        event.preventDefault()
 
-    const validationError = validateForm()
+        const validationError = validateForm()
 
-    if (validationError) {
-      setError(validationError)
-      return
-    }
+        if (validationError) {
+          setError(validationError)
+          return
+        }
 
-    try {
-      setIsSubmitting(true)
-      setError('')
+        try {
+          setIsSubmitting(true)
+          setError('')
 
-      const organizationData = {
-        name: formData.name.trim(),
-        industry: formData.industry.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        website: formData.website.trim(),
-        address: formData.address.trim(),
+          const organizationData = {
+            name: formData.name.trim(),
+            industry: formData.industry.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            website: formData.website.trim(),
+            address: formData.address.trim(),
+          }
+
+          console.log(
+            'Organization payload:',
+            organizationData,
+          )
+
+          if (organization?._id) {
+            await updateOrganization(organizationData)
+
+            toast.success(
+              'Organization updated successfully',
+            )
+          } else {
+            await createOrganization(organizationData)
+
+            toast.success(
+              'Organization created successfully',
+            )
+          }
+
+          // Fetch the actual saved data from MongoDB
+          await fetchOrganization()
+
+          setIsEditing(false)
+        } catch (requestError) {
+          console.error(
+            'Organization save error:',
+            requestError.response?.data || requestError,
+          )
+
+          const message =
+            requestError.response?.data?.message ||
+            'Unable to save organization.'
+
+          setError(message)
+          toast.error(message)
+        } finally {
+          setIsSubmitting(false)
+        }
       }
 
-      let response
-
-      if (organization?._id) {
-        response = await updateOrganization(
-          organization._id,
-          organizationData,
-        )
-
-        toast.success('Organization updated successfully')
-      } else {
-        response = await createOrganization(
-          organizationData,
-        )
-
-        toast.success('Organization created successfully')
-      }
-
-      const savedOrganization =
-        response.data?.organization ||
-        response.data ||
-        response.organization ||
-        organizationData
-
-      setOrganization(savedOrganization)
-      setIsEditing(false)
-    } catch (requestError) {
-      const message =
-        requestError.response?.data?.message ||
-        'Unable to save organization.'
-
-      setError(message)
-      toast.error(message)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleDelete = async () => {
-    if (!organization?._id) {
-      return
-    }
-
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this organization?',
-    )
-
-    if (!confirmed) {
-      return
-    }
-
-    try {
-      await deleteOrganization(organization._id)
-
-      setOrganization(null)
-      setFormData(initialFormData)
-      setIsEditing(false)
-
-      toast.success('Organization deleted successfully')
-    } catch (requestError) {
-      toast.error(
-        requestError.response?.data?.message ||
-          'Unable to delete organization.',
-      )
-    }
-  }
+  
 
   const handleCancelEdit = () => {
     setFormData({
@@ -411,12 +396,7 @@ const Organization = () => {
               Edit
             </button>
 
-            <button
-              type="button"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
+            
           </div>
         </section>
       )}

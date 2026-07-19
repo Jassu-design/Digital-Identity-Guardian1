@@ -1,13 +1,13 @@
 import api from './axios.js'
 
-// Get the organization connected to the logged-in user
+// Get logged-in user's organization
 export const getOrganization = async () => {
   const response = await api.get('/organizations')
 
   return response.data
 }
 
-// Create a new organization
+// Create organization
 export const createOrganization = async organizationData => {
   const response = await api.post(
     '/organizations',
@@ -17,23 +17,11 @@ export const createOrganization = async organizationData => {
   return response.data
 }
 
-// Update organization details
-export const updateOrganization = async (
-  organizationId,
-  organizationData,
-) => {
+// Update organization
+export const updateOrganization = async organizationData => {
   const response = await api.patch(
-    `/organizations/${organizationId}`,
+    '/organizations',
     organizationData,
-  )
-
-  return response.data
-}
-
-// Delete an organization
-export const deleteOrganization = async organizationId => {
-  const response = await api.delete(
-    `/organizations/${organizationId}`,
   )
 
   return response.data

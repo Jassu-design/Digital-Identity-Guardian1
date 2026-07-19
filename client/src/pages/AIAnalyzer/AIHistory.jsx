@@ -154,7 +154,7 @@ const AIHistory = () => {
             const riskLevel =
               analysis.riskLevel ??
               analysis.severity ??
-              analysis.analysis?.riskLevel ??
+              
               'unknown'
 
             const message =

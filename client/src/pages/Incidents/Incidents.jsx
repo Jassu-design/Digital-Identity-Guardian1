@@ -9,7 +9,7 @@ import {
   deleteIncident,
   getIncidents,
   resolveIncident,
-} from '../../api/incidentApi'
+} from '../../api/incidentApi.js'
 
 import './Incidents.css'
 
@@ -19,24 +19,41 @@ const Incidents = () => {
   const [error, setError] = useState('')
 
   const fetchIncidents = async () => {
-    try {
-      setIsLoading(true)
-      setError('')
+  try {
+    setIsLoading(true)
+    setError('')
 
-      const response = await getIncidents()
+    const response = await getIncidents()
 
-      setIncidents(response.data || [])
-    } catch (err) {
-      const message =
-        err.response?.data?.message ||
-        'Unable to load incidents.'
+    console.log('Incidents API response:', response)
 
-      setError(message)
-      toast.error(message)
-    } finally {
-      setIsLoading(false)
-    }
+    const incidentsData =
+      response.data?.incidents ||
+      response.incidents ||
+      response.data ||
+      []
+
+    setIncidents(
+      Array.isArray(incidentsData)
+        ? incidentsData
+        : [],
+    )
+  } catch (err) {
+    console.error(
+      'Incident fetching error:',
+      err.response?.data || err,
+    )
+
+    const message =
+      err.response?.data?.message ||
+      'Unable to load incidents.'
+
+    setError(message)
+    toast.error(message)
+  } finally {
+    setIsLoading(false)
   }
+}
 
   useEffect(() => {
     fetchIncidents()
@@ -115,7 +132,8 @@ const Incidents = () => {
         </Link>
       </div>
 
-      {incidents.length === 0 ? (
+      {!Array.isArray(incidents) ||
+        incidents.length === 0 ? (
         <EmptyState
             title="No incidents found"
             message="Start by reporting your first security incident."

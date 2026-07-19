@@ -1,11 +1,7 @@
 import {useEffect, useState} from 'react'
 import {toast} from 'react-hot-toast'
 
-import {
-  downloadSecurityReport,
-  generateSecurityReport,
-  getSecurityReport,
-} from '../../api/reportApi.js'
+import {getSecurityReport} from '../../api/reportApi.js'
 
 import './Reports.css'
 
@@ -19,93 +15,68 @@ const Reports = () => {
   const [error, setError] = useState('')
 
   const fetchReport = async () => {
-    try {
-      setIsLoading(true)
-      setError('')
+  try {
+    setIsLoading(true)
+    setError('')
 
-      const response = await getSecurityReport()
+    const response = await getSecurityReport()
 
-      setReport(
-        response.data?.report ||
-          response.data ||
-          response.report ||
-          response,
-      )
-    } catch (requestError) {
-      const message =
-        requestError.response?.data?.message ||
-        'Unable to load security report.'
+    console.log('Report API response:', response)
 
-      setError(message)
-    } finally {
-      setIsLoading(false)
-    }
+    const reportData =
+      response.data?.report ||
+      response.report ||
+      null
+
+    setReport(reportData)
+  } catch (requestError) {
+    console.error(
+      'Report error:',
+      requestError.response?.data || requestError,
+    )
+
+    const message =
+      requestError.response?.data?.message ||
+      'Unable to load security report.'
+
+    setError(message)
+  } finally {
+    setIsLoading(false)
   }
+}
 
   useEffect(() => {
     fetchReport()
   }, [])
 
   const handleGenerateReport = async () => {
-    try {
-      setIsGenerating(true)
-      setError('')
+  try {
+    setIsGenerating(true)
+    setError('')
 
-      const response = await generateSecurityReport()
+    const response = await getSecurityReport()
 
-      const generatedReport =
-        response.data?.report ||
-        response.data ||
-        response.report ||
-        response
+    const generatedReport =
+      response.data?.report ||
+      response.report ||
+      null
 
-      setReport(generatedReport)
+    setReport(generatedReport)
 
-      toast.success('Security report generated')
-    } catch (requestError) {
-      toast.error(
-        requestError.response?.data?.message ||
-          'Unable to generate report.',
-      )
-    } finally {
-      setIsGenerating(false)
-    }
+    toast.success('Security report generated')
+  } catch (requestError) {
+    const message =
+      requestError.response?.data?.message ||
+      'Unable to generate report.'
+
+    setError(message)
+    toast.error(message)
+  } finally {
+    setIsGenerating(false)
   }
+}
 
-  const handleDownloadReport = async () => {
-    try {
-      setIsDownloading(true)
-
-      const response = await downloadSecurityReport()
-
-      const fileBlob = new Blob([response.data], {
-        type:
-          response.headers['content-type'] ||
-          'application/pdf',
-      })
-
-      const downloadUrl = URL.createObjectURL(fileBlob)
-      const link = document.createElement('a')
-
-      link.href = downloadUrl
-      link.download = 'digital-identity-report.pdf'
-
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-
-      URL.revokeObjectURL(downloadUrl)
-
-      toast.success('Report downloaded')
-    } catch (requestError) {
-      toast.error(
-        requestError.response?.data?.message ||
-          'Unable to download report.',
-      )
-    } finally {
-      setIsDownloading(false)
-    }
-  }
+  
 
   const formatText = value => {
     if (!value) {
@@ -141,10 +112,17 @@ const Reports = () => {
   }
 
   const summary = report?.summary || report || {}
-  const categoryBreakdown =
-    report?.categoryBreakdown || []
-  const recommendations =
-    report?.recommendations || []
+  const categoryBreakdown = Array.isArray(
+      report?.categoryBreakdown,
+    )
+      ? report.categoryBreakdown
+      : []
+
+    const recommendations = Array.isArray(
+      report?.recommendations,
+    )
+      ? report.recommendations
+      : []
 
   return (
     <div className="reports-container">
@@ -169,15 +147,7 @@ const Reports = () => {
               : 'Generate Report'}
           </button>
 
-          <button
-            type="button"
-            onClick={handleDownloadReport}
-            disabled={isDownloading || !report}
-          >
-            {isDownloading
-              ? 'Downloading...'
-              : 'Download PDF'}
-          </button>
+          
         </div>
       </div>
 
