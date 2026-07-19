@@ -31,7 +31,11 @@ const AIAnalyzer = () => {
         sender: sender.trim() || 'Unknown',
         source: 'manual',
       })
-      setAnalysis(response.data || response.analysis || response)
+      setAnalysis(
+        response.data?.analysis ||
+          response.analysis ||
+          response,
+      )
 
       toast.success('Message analyzed successfully')
     } catch (requestError) {
