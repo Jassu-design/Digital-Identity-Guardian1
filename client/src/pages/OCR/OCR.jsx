@@ -1,10 +1,9 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {toast} from 'react-hot-toast'
 
 import {
   analyzeImage,
-  getOCRHistory,
-  deleteOCRAnalysis,
+
 } from '../../api/ocrApi.js'
 
 import './OCR.css'
@@ -13,40 +12,14 @@ const OCR = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const [imagePreview, setImagePreview] = useState('')
   const [result, setResult] = useState(null)
-  const [history, setHistory] = useState([])
+  
   const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [isHistoryLoading, setIsHistoryLoading] =
-    useState(true)
+  
   const [error, setError] = useState('')
 
-  const fetchHistory = async () => {
-    try {
-      setIsHistoryLoading(true)
+  
 
-      const response = await getOCRHistory()
-
-      const historyData =
-        response.data?.history ||
-        response.data ||
-        response.history ||
-        []
-
-      setHistory(
-        Array.isArray(historyData) ? historyData : [],
-      )
-    } catch (requestError) {
-      toast.error(
-        requestError.response?.data?.message ||
-          'Unable to load OCR history.',
-      )
-    } finally {
-      setIsHistoryLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchHistory()
-  }, [])
+  
 
   const handleImageChange = event => {
     const file = event.target.files[0]
@@ -113,7 +86,6 @@ const OCR = () => {
       setResult(analysisResult)
 
       toast.success('Image analyzed successfully')
-      fetchHistory()
     } catch (requestError) {
       const message =
         requestError.response?.data?.message ||
@@ -125,7 +97,7 @@ const OCR = () => {
       setIsAnalyzing(false)
     }
   }
-
+  console.log(selectedImage)
   const handleDeleteHistory = async id => {
     const confirmed = window.confirm(
       'Delete this OCR analysis?',
@@ -327,51 +299,7 @@ const OCR = () => {
         </section>
       </div>
 
-      <section className="ocr-history-section">
-        <h2>OCR History</h2>
-
-        {isHistoryLoading ? (
-          <p>Loading history...</p>
-        ) : history.length === 0 ? (
-          <p>No OCR analyses found.</p>
-        ) : (
-          <div className="ocr-history-list">
-            {history.map(item => (
-              <article
-                className="ocr-history-card"
-                key={item._id}
-              >
-                <div>
-                  <h3>
-                    {item.fileName ||
-                      item.imageName ||
-                      'Screenshot Analysis'}
-                  </h3>
-
-                  <p>
-                    {item.extractedText ||
-                      item.text ||
-                      'No extracted text'}
-                  </p>
-
-                  <span>
-                    Risk: {item.riskScore ?? 0}/100
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleDeleteHistory(item._id)
-                  }
-                >
-                  Delete
-                </button>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
+      
     </div>
   )
 }

@@ -4,12 +4,6 @@ const api = axios.create({
   baseURL:
     import.meta.env.VITE_API_URL ||
     'http://localhost:3001/api',
-
-  headers: {
-    'Content-Type': 'application/json',
-  },
-
-  timeout: 30000,
 })
 
 api.interceptors.request.use(
@@ -20,32 +14,17 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`
     }
 
-    return config
-  },
-
-  error => Promise.reject(error),
-)
-
-api.interceptors.response.use(
-  response => response,
-
-  error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
-
-      const currentPath = window.location.pathname
-
-      if (
-        currentPath !== '/login' &&
-        currentPath !== '/register'
-      ) {
-        window.location.href = '/login'
-      }
+    // Do not force JSON headers for image uploads
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type']
+    } else {
+      config.headers['Content-Type'] =
+        'application/json'
     }
 
-    return Promise.reject(error)
+    return config
   },
+  error => Promise.reject(error),
 )
 
 export default api
